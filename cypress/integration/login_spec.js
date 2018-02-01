@@ -1,21 +1,13 @@
 describe('Nirvana Test Run', () => {
-    /*     beforeEach(() => {
-            cy.visit('/')
-            cy.request('POST', 'https://backofficeapi-test.backstage.solutions/api/v1.0/Token', {
-                username: 'mobilet',
-                password: 'nirvana',
-                apiKey: '11',
-                terminalId: '1',
-                channelCode: 'Web',
-                firmCode: 'MBT',
-                grant_type: 'refresh_token'
 
-            }).then(resp => {
-                expect(resp.status).to.eq(200)
-                expect(resp).to.have.property('headers')
-                expect(resp).to.have.property('duration')
-            })
-        }) */
+    before(() => {
+        cy.clearLocalStorage().should(function(ls) {
+            expect(localStorage.getItem('access_token')).to.be.null
+            expect(localStorage.getItem('token_type')).to.be.null
+        })
+        cy.login('mobilet');
+
+    })
     it('should that <title> is correct', () => {
         cy.visit('/')
         cy.title().should('include', 'Backstage')
@@ -23,12 +15,12 @@ describe('Nirvana Test Run', () => {
 
     it('logged in ', () => {
 
-            cy.get('input[name="username"]').focus().type('**')
-            cy.get('input[name="password"]').focus().type('**')
-            cy.get('input[name="apiKey"]').focus().type('**')
-            cy.get('input[name="terminalId"]').focus().type('*')
-            cy.get('input[name="channelCode"]').focus().type('**')
-            cy.get('input[name="firmCode"]').focus().type('**')
+            cy.get('input[name="username"]').focus().type('mobilet')
+            cy.get('input[name="password"]').focus().type('nirvana')
+            cy.get('input[name="apiKey"]').focus().type('11')
+            cy.get('input[name="terminalId"]').focus().type('1')
+            cy.get('input[name="channelCode"]').focus().type('Web')
+            cy.get('input[name="firmCode"]').focus().type('MBT')
             cy.get('button').click().then((resp) => {
                 console.log("Button Resposne", resp);
             })
@@ -67,9 +59,10 @@ describe('Nirvana Test Run', () => {
         const performerName = "Brewww End2End";
         it('get All Perfromers', () => {
             cy.get('.c-main-menu__list>li').then(($lis) => {
-                console.log($lis);
+                cy.wait(1000);
                 $lis.eq(6).click();
                 cy.get('app-tether-dialog__overlay').should('have.class', 'c-tether-dialog__overlay')
+                cy.wait(1500);
                 cy.get('.c-context-menu').should('be.visible');
                 cy.get('.c-context-menu__list-item-label').click();
                 cy.hash().should('eq', '#/performers')
@@ -87,7 +80,7 @@ describe('Nirvana Test Run', () => {
         })
         it('check type elements', () => {
             cy.get('.c-basic-button-group__inner>li').then($tip => {
-                console.log($tip);
+                cy.wait(1000);
                 $tip.eq(0).click();
                 cy.get('app-attributes-select-add').should('be.visible');
                 cy.get('body').click(10, 10);
@@ -103,6 +96,7 @@ describe('Nirvana Test Run', () => {
                 $tip.eq(3).click();
                 cy.get('app-attributes-select-add').should('be.visible');
                 cy.get('body').click(10, 10);
+                cy.wait(1000);
 
             })
             cy.get('.c-dialog-box__footer-content .c-button').then($butons => {

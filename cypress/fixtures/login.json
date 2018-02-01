@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "username": "mobilet",
+        "passowrd": "nirvana",
+        "apiKey": "11",
+        "terminalId": "1",
+        "channelCode": "Web",
+        "firmCode": "MBT"
+    },
+    {
+        "id": 2,
+        "username": "mobilet",
+        "passowrd": "nirvana",
+        "apiKey": "1",
+        "terminalId": "1",
+        "channelCode": "Box office",
+        "firmCode": "MBT"
+    }
+]
