@@ -1,16 +1,19 @@
 {
     "name": "nirvana-cyTest",
     "version": "1.0.0",
-    "description": "",
+    "description": "NRVN E2E Tests",
     "main": "index.js",
     "scripts": {
+        "cypress:open": "./node_modules/.bin/cypress open",
+        "cypress:nonG": "./node_modules/.bin/cypress run --reporter mochawesome ",
         "test": "./node_modules/.bin/cypress open"
     },
     "keywords": [],
-    "author": "",
+    "author": "Brewww Interactive",
     "license": "ISC",
     "dependencies": {},
     "devDependencies": {
-        "cypress": "^1.4.1"
+        "cypress": "^1.4.1",
+        "junit": "^1.4.9"
     }
 }

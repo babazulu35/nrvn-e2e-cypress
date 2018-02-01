@@ -1,5 +1,11 @@
 {
     "baseUrl": "https://backstage-test.mobilet.com",
     "chromeWebSecurity": false,
-    "projectId": "n4p44w"
+    "projectId": "n4p44w",
+    "reporter": "junit",
+    "reporterOptions": {
+        "mochaFile": "results/my-test-output.xml",
+        "toConsole": true
+    },
+    "videoRecording": false
 }
